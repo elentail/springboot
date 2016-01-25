@@ -10,4 +10,9 @@ public class IndexController {
 	public String index(){
 		return "index";
 	}
+	
+	@RequestMapping(value="/errors")
+	public String sendError(){
+		return "error/404";
+	}
 }
