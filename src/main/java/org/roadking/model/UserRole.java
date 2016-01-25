@@ -23,7 +23,7 @@ public class UserRole {
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private User user;
+	private Users user;
 
 	/**
 	 * @return the userRoleId
@@ -56,14 +56,14 @@ public class UserRole {
 	/**
 	 * @return the user
 	 */
-	public User getUser() {
+	public Users getUser() {
 		return user;
 	}
 
 	/**
 	 * @param user the user to set
 	 */
-	public void setUser(User user) {
+	public void setUser(Users user) {
 		this.user = user;
 	}
 

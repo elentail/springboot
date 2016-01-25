@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
-import org.roadking.model.User;
+import org.roadking.model.Users;
 import org.roadking.model.UserRole;
 import org.roadking.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class ApplicationLoader  implements ApplicationListener<ContextRefreshedE
 		String s = currentRelativePath.toAbsolutePath().toString();
 		System.out.println("Current relative path is: " + s);
 		
-		User admin = new User();
+		Users admin = new Users();
 		admin.setUsername("admin");
 		admin.setPassword("123456");
 		admin.setFirstName("Foo");

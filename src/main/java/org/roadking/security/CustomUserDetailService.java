@@ -24,13 +24,13 @@ public class CustomUserDetailService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		org.roadking.model.User user =  userRepository.findByUsername(username);
+		org.roadking.model.Users user =  userRepository.findByUsername(username);
 		List<GrantedAuthority> authorities = buildUserAuthority(user.getUserRoles());
 		
 		return buildUserForAuthentication(user,authorities);
 	}
 	
-	private User buildUserForAuthentication(org.roadking.model.User user,
+	private User buildUserForAuthentication(org.roadking.model.Users user,
 			List<GrantedAuthority> authorities) {
 		
 		return new User(user.getUsername(),user.getPassword(),true,true,true,true,authorities);
