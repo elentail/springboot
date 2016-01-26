@@ -39,17 +39,10 @@ public class ApplicationLoader  implements ApplicationListener<ContextRefreshedE
 		admin.setLastName("Bar");
 		
 		UserRole adminRole = new UserRole();
-		adminRole.setUserRoleName("ADMIN");
+		adminRole.setUserRoleName("ROLE_ADMIN");
 		adminRole.setUser(admin);
-		
-		UserRole userRole = new UserRole();
-		userRole.setUserRoleName("USER");
-		userRole.setUser(admin);
-		
 		Set<UserRole> adminRoles = new HashSet<UserRole>(0);
 		adminRoles.add(adminRole);
-		adminRoles.add(userRole);
-		
 		admin.setUserRoles(adminRoles);
 		
 		userRepository.save(admin);

@@ -40,31 +40,35 @@ public class SecurityConfigurator extends WebSecurityConfigurerAdapter {
 		.antMatchers("/css/**", "/js/**", "/images/**", "/resources/**", "/webjars/**").permitAll();
 		
 		http.authorizeRequests()
-						.antMatchers("/").permitAll()
-						.antMatchers("/signin").anonymous()
-						//.antMatchers("/eval/**").hasAnyRole("USER","ADMIN")
-						//.anyRequest().authenticated()
-						.and()
-					.formLogin()
-						.loginPage("/signin")
-						//.loginProcessingUrl("/sign-in-process.html")
-						.failureUrl("/signin?error")
-						.usernameParameter("username")
-						.passwordParameter("password")
-						.defaultSuccessUrl("/admin/dashboard.html", true);
+				.antMatchers("/").permitAll()
+				.antMatchers("/signin").anonymous()
+				.antMatchers("/admin/**").hasRole("ADMIN")
+				.anyRequest().authenticated()
+				.and()
+			.formLogin()
+				.loginPage("/signin")
+				//.loginProcessingUrl("/sign-in-process.html")
+				//.failureUrl("/signin?error")
+				.usernameParameter("username")
+				.passwordParameter("password")
+				//.defaultSuccessUrl("/admin/dashboard.html", true)
+				.and()
+			.logout()
+				.logoutSuccessUrl("/signin?logout");
 		
 		http.exceptionHandling().accessDeniedPage("/admin/dashboard.html");
 		http.sessionManagement().invalidSessionUrl("/signin");
+		
 	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-		System.out.println("Authenication called");
-		auth.userDetailsService(customUserDetailsSevice);
+		//System.out.println("Authenication called");
+		//auth.userDetailsService(customUserDetailsSevice);
 		
 		// In case of password encryption - for production site
-		//auth.userDetailsService(customerUserDetailsService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(customUserDetailsSevice).passwordEncoder(passwordEncoder());
 	}
 	
 	
