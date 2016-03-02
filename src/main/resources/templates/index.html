@@ -8,7 +8,12 @@
             th:src="@{/webjars/jquery/2.2.0/jquery.min.js}"></script>
 </head>
 <body>
+	<th:block th:include="fragments/header :: header"></th:block>
+	
 	<h1>TEST</h1>
+	<img alt="test view" src="../static/images/home.png" th:src="@{/images/home.png}" />
+	
 	<th:block th:include="fragments/footer :: footer"></th:block>
+	 
 </body>
 </html>
